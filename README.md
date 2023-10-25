@@ -1,8 +1,8 @@
-# asic_project_blind-stick
+# asic_project_automatic door controller
 This github repository summarizes the progress made in the ASIC class for the riscv_project.
 
 # Aim of the project
-The aim of the prohect is to design a blind stick utilizing a specialized RISCV processor for pothole detction, with the objective that a blind person will be able to walk a bit more safely
+The aim of the prohect is to design a gate controller that detects when someone is in the proximity and automatically opens the door
 
 # Working
 A transmitter and an ultrasonic sensor is employed at the bottom of the stick to dtect the obstacle/pothole. Upon activating the transmitter an unltrasonic wave will transmit. Upon detection, the buzzer would go on indicating that there is something nearby.
@@ -271,6 +271,19 @@ sw
 
 ```
 # Spike Simulation
+
+
+- After this, we define the inputs and outputs using asm to link the assemply level inputs and outputs and store them over variables in C.
+
+- Now, we spike the code to again check the functionality of the code. The test code can be found above as spike_tester.c. We have taken 4 testcases, 3 for the doors to open and one for door remains closed.
+- eg: For m=1 and {p1,p2} = (0,1) the door is opened i.e {d1.d2}=(1,1)
+      For m=1 and {p1,p2} = (1,1) the door is opened i.e {d1.d2}=(1,1)
+      For m=0 and {p1,p2} = (1,0) the door is opened i.e {d1.d2}=(1,1)
+      For m=1 and {p1,p2} = (0,1) the door is opened i.e {d1.d2}=(0,0)
+- The masked output format comes as {d1,d2,p2,p1,m}, in which the 3 bits from LSB are input bits which get masked to 0 for the output, thus the masked output is displayed in the spike simulation comes as {1,1,0,0,0}.
+
+   Masked Output - 24 (000011000) for input {p2,p1,m}=(0,1,0);(1,0,1);(1,1,1);(1,1,0)
+   Masked Output - 00 (000000000) for rest of inputs 
 - **code for spike simulation**
 ```bash
 #include <stdio.h>
