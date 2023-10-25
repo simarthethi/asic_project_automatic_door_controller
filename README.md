@@ -19,6 +19,7 @@ The following is not the final circuit but just for reference
 ![Screenshot from 2023-10-05 10-16-26](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/759cf073-f28c-4b43-9b0b-e4b9b9d3b657)
 
 # C code
+-code to be used for generating RTL processor
 ```bash
 
 int main()
