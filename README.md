@@ -429,3 +429,25 @@ return 0;
 ![Screenshot from 2023-10-25 16-28-10](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/f3e60627-1f4b-4e45-9437-c4a57f51fce8)
 ![Screenshot from 2023-10-25 16-28-37](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/53d2c950-f194-4836-b8e8-d06dc16c2f98)
 
+# Functional Simualation
+
+We will perform functional simulation to test the functionality of the verilog code generated for the processor chip. We have tested the processor and its functionality for various input combinations and compare the output generated with the desired expected output. The processor and testbench code are under the file name ```processor.v``` and ```testbench.v```. The files can be found in the repository above.
+
+Note - The inputs for the processor are ```m, p1, p2```. The inputs are taken from LSB for the x30 registor, thus, the input format is given as {p2,p1,m}. ie, the LSB bit is mapped to m and continues. Similar;y the output is generated as {av2,av1,x,c}
+
+
+- input - 100, expected output -  00
+![Screenshot from 2023-10-28 22-57-21](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/327bc367-c3c3-4dec-b22b-6303ad1900f7)
+
+- input - 111, expected output - 11
+![Screenshot from 2023-10-28 22-51-41](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/fc33abb1-4785-4dca-a7dd-5910dcfa0510)
+
+- input - 101, expected output - 11
+![Screenshot from 2023-10-28 23-03-01](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/d67161fd-bbf0-48f8-82bf-c05cf64c6f14)
+
+- input - 010, expected output - 11
+![Screenshot from 2023-10-28 23-08-40](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/c74714e3-5028-427a-943a-75ed7082b36f)
+
+We have seen a few cases and verified the output. We can observe the instruction bit toggling and the input can be seen in the ```input_gpio_pins``` and ```input_write```. We can see the output has been written in the ```output_gpio_pins``` and ```output_write```. We can also observe the ```write_done``` being flagged once the output has been written. Thus we can conclude the processor code is working as expected and we can now move ahead with the synthesis and Gate level simulations.
+
+
