@@ -454,5 +454,60 @@ We have seen a few cases and verified the output. We can observe the instruction
 
 We will consider the link: ```https://en.wikichip.org/wiki/risc-v/registers``` for refrence and decide the signal pins. Thus, according to the reference given, ```signal43``` is zero register, ```signal45``` is the stack pointer, ```signal51``` is the s0 register and ```signal58``` is the a5 register.
 
+Some of the instructions in the above assembly code were tested in GTKWave and was verified.
+
+**addi sp,sp,-48**
+Here we will conside the assembly code line:
+```10054:	fd010113          	addi	sp,sp,-48```
+We can observe default value of sp is FF after that it becomes CF which is -48 in hexadecimal.
+
+Input instruction - 00000000
+
+Output instruction - FB010113
+
+![Screenshot from 2023-11-01 18-54-47](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/816e892e-c194-4692-a345-720f9eb9daaa)
+
+
+**addi	s0,sp,48**
+Here we will conside the assembly code line:
+```1005c:	03010413          	addi	s0,sp,48```
+
+We can see for the instruction03010413 in the register s0 which is $signal$53 will be 000000FF which is 255.
+
+![Screenshot from 2023-11-01 18-50-51](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/b8ad2e48-49de-4469-a5ed-b4c23736c5f7)
+![Screenshot from 2023-11-01 18-51-41](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/3841d574-bb7f-4cfe-b54d-74280f171e20)
+
+# The below screenshots are of mutiple possible cases of inputs
+
+- We see the input 011 produces the output low of 00 
+![Screenshot from 2023-11-01 18-34-35](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/2c3e9a64-5294-49ac-a428-4c457fdaec7f)
+When the output is becoming low the instruction is 00FF6f33 as shown above.
+
+- We see the input 101 produces the output high of 11
+![Screenshot from 2023-11-01 18-42-09](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ed604501-0cd3-4f22-b15c-507aabce9460)
+
+
+# Gate Level Synthesis
+
+Here we do Synthesis of our processor on yosys using the following commands:
+```bash
+read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80_256.lib 
+read_verilog processor.v 
+synth -top wrapper
+dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80_256.lib 
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80_256.lib
+write_verilog <filename.v>
+```
+
+The following Command is used to run the synthesized netlist along with primitives.
+```bash
+iverilog -o test testbench.v synth_processor_test.v sky130_sram_1kbyte_1rw1r_32x256_8.v sky130_fd_sc_hd.v primitives.v
+```
+The following screenshot is of the wrapper module using the following command in yosys
+```bash
+show wrapper
+```
+![Screenshot from 2023-10-31 22-36-48](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/8044c186-7181-4b77-a55e-c7448ca77340)
+
 
 
