@@ -510,5 +510,8 @@ show wrapper
 ```
 ![Screenshot from 2023-10-31 22-36-48](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/8044c186-7181-4b77-a55e-c7448ca77340)
 
+The following waveforms are of GLS Simulation obtained using GTKWave and the same output is obtained as Functional Verification.
+![Screenshot from 2023-10-31 22-57-05](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/716ab35e-b06f-412a-979b-cf4c6ff0cbf1)
 
+![Screenshot from 2023-11-01 18-34-35](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/0adcc700-cd26-44a9-95d8-4505ce3ef902)
 
