@@ -485,6 +485,7 @@ When the output is becoming low the instruction is 00FF6f33 as shown above.
 
 - We see the input 101 produces the output high of 11
 ![Screenshot from 2023-11-01 18-42-09](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ed604501-0cd3-4f22-b15c-507aabce9460)
+When the output is becoming low the instruction is ED5FF06F as shown above.
 
 
 # Gate Level Synthesis
