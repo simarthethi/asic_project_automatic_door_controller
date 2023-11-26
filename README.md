@@ -664,8 +664,8 @@ gen_pdn
 
 - OpenLANE uses the TritonRoute tool for routing. There are 2 stages of routing:
       
-    -Global Routing
-    -Detailed Routing
+    Global Routing
+    Detailed Routing
 
 
 - In Global Routing Routing region is divided into rectangle grids which are represented as course 3D routes (Fastroute tool).
@@ -687,19 +687,19 @@ run_routing
 <img width="616" alt="magic" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ed150954-f766-4220-8de2-ac9c680dd01b">
 
 - Post Routing Reports
-  -Timing
+- Timing
   
 <img width="689" alt="rout_timing" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/9a13e90d-ceba-45d5-8a41-e065e2931bcf">
 
- -Area
+- Area
  
 <img width="634" alt="rout_area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/8d028003-e3a9-4368-8d8b-03a13ad3db8b">
 
- -Power
+- Power
  
  <img width="653" alt="rout_power" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ef0de36d-d47f-4e32-a65d-1097b81ebad0">
 
- -Design Rule Check (DRC)
+- Design Rule Check (DRC)
 
  <img width="689" alt="drc" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/b28f96f6-43db-4ce4-aa33-ce67425a1c19">
 
