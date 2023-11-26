@@ -587,3 +587,125 @@ run_antenna_check
 - To synthesize the code run the following command.
 
 <img width="680" alt="synth_log" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/f21dcaa8-e840-48a4-a0d7-14340cc7e5f5">
+
+FLOORPLAN
+
+- Goal is to plan the silicon area and create a robust power distribution network (PDN) to power each of the individual components of the synthesized netlist. In addition, macro placement and blockages must be defined before placement occurs to ensure a legalized GDS file. In power planning we create the ring which is connected to the pads which brings power around the edges of the chip. We also include power straps to bring power to the middle of the chip using higher metal layers which reduces IR drop and electro-migration problem.
+
+- Following command helps to run floorplan:
+
+```bash
+run_floorplan
+```
+- To view the floorplan on Magic from ```results/floorplan```
+```bash
+ magic -T ~/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+```
+<img width="962" alt="floorplan" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/2aac5a67-6177-4838-ad07-12f297472f75">
+- Core Area after floorplan
+<img width="674" alt="core_area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/aab9d32a-853f-4902-9f87-9e460df436a3">
+- Die Area after floorplan
+<img width="707" alt="die_area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/722b470c-3d09-4052-a590-0688f479cef9">
+
+**PLACEMENT**
+
+- Place the standard cells on the floorplane rows, aligned with sites defined in the technology lef file. Placement is done in two steps: Global and Detailed. In Global placement tries to find optimal position for all cells but they may be overlapping and not aligned to rows, detailed placement takes the global placement and legalizes all of the placements trying to adhere to what the global placement wants. The next step in the OpenLANE ASIC flow is placement. The synthesized netlist is to be placed on the floorplan. Placement is perfomed in 2 stages:
+      - Global Placement
+      - Detailed Placement
+  
+- Run the following command to run the placement:  
+```bash
+run_placement
+```
+- To view the placement on Magic from results/placement
+```bash
+ magic -T ~/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+```
+<img width="1071" alt="placement" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/d6f815ee-3093-432e-b838-c7ee74aa5d2b">
+
+**CLOCK TREE SYNTHESIS**
+
+Clock tree synteshsis is used to create the clock distribution network that is used to deliver the clock to all sequential elements. The main goal is to create a network with minimal skew across the chip. H-trees are a common network topology that is used to achieve this goal.
+
+The purpose of building a clock tree is enable the clock input to reach every element and to ensure a zero clock skew. H-tree is a common methodology followed in CTS. Following command is used to run CTS.
+```bash
+run_cts
+```
+- Timimg Report
+
+<img width="673" alt="timing" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/5f71ba58-4f42-4faf-89be-1c21128bf996">
+-  Area Report
+
+<img width="685" alt="area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/16cbc721-03d2-493d-9141-8f580ea717a4">
+-  Skew Report
+
+<img width="605" alt="skew" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/19a18af5-cb79-4cda-a4d1-94aeff1914af">
+- Power Report
+
+<img width="667" alt="power" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/b600e8e6-6a77-4a0c-bfdb-5b8e7353b255">
+
+**POWER NETWORK DISTRIBUTION**
+
+- The commmand to establish power distribution network is as follows
+```bash
+gen_pdn
+```
+**ROUTING**
+
+- Implements the interconnect system between standard cells using the remaining available metal layers after CTS and PDN generation. The routing is performed on routing grids to ensure minimal DRC errors.
+
+- OpenLANE uses the TritonRoute tool for routing. There are 2 stages of routing:
+      
+    -Global Routing
+    -Detailed Routing
+
+
+- In Global Routing Routing region is divided into rectangle grids which are represented as course 3D routes (Fastroute tool).
+
+- In Detailed Finer grids and routing guides used to implement physical wiring (TritonRoute tool).
+
+- Run the following command to run the routing
+```bash
+run_routing
+```
+- The layout can be viewed using MAGIC in results/routing
+```bash
+ magic -T ~/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
+```
+<img width="959" alt="routing" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/7e0d719b-2606-4738-88a9-1a12b7b44182">
+
+- Area of Design
+<img width="616" alt="magic" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ed150954-f766-4220-8de2-ac9c680dd01b">
+
+- Post Routing Reports
+  -Timing
+  
+<img width="689" alt="rout_timing" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/9a13e90d-ceba-45d5-8a41-e065e2931bcf">
+
+ -Area
+ 
+<img width="634" alt="rout_area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/8d028003-e3a9-4368-8d8b-03a13ad3db8b">
+
+ -Power
+ 
+ <img width="653" alt="rout_power" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ef0de36d-d47f-4e32-a65d-1097b81ebad0">
+
+ -Design Rule Check (DRC)
+
+ <img width="689" alt="drc" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/b28f96f6-43db-4ce4-aa33-ce67425a1c19">
+
+# Word of Thanks
+
+I would take this opportunity to sciencerly thank Mr. Kunal Gosh(Founder/VSD) for helping me out to complete this flow smoothly.
+
+Acknowledgement
+
+- Kunal Ghosh, VSD Corp. Pvt. Ltd.
+- Skywater Foundry
+- OpenAI Chatgpt
+- Alwin Shaju, MTech, IIITB
+- Emil Jayanth Lal, MTech, IIITB
+- N Sai Sampath, MTech, IIITB
+- Mayank Kabra, Founder, Chipcron Pvt.Ltd.
+- Sahil Singh Rana, MTech, IIITB
+- Kanish R, MTech, IIITB
