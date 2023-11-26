@@ -601,10 +601,15 @@ run_floorplan
 ```bash
  magic -T ~/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
 ```
+
 <img width="962" alt="floorplan" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/2aac5a67-6177-4838-ad07-12f297472f75">
+
 - Core Area after floorplan
+
 <img width="674" alt="core_area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/aab9d32a-853f-4902-9f87-9e460df436a3">
+
 - Die Area after floorplan
+
 <img width="707" alt="die_area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/722b470c-3d09-4052-a590-0688f479cef9">
 
 **PLACEMENT**
@@ -634,12 +639,15 @@ run_cts
 - Timimg Report
 
 <img width="673" alt="timing" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/5f71ba58-4f42-4faf-89be-1c21128bf996">
+
 -  Area Report
 
 <img width="685" alt="area" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/16cbc721-03d2-493d-9141-8f580ea717a4">
+
 -  Skew Report
 
 <img width="605" alt="skew" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/19a18af5-cb79-4cda-a4d1-94aeff1914af">
+
 - Power Report
 
 <img width="667" alt="power" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/b600e8e6-6a77-4a0c-bfdb-5b8e7353b255">
@@ -673,6 +681,7 @@ run_routing
  magic -T ~/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read wrapper.def &
 ```
 <img width="959" alt="routing" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/7e0d719b-2606-4738-88a9-1a12b7b44182">
+
 
 - Area of Design
 <img width="616" alt="magic" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/ed150954-f766-4220-8de2-ac9c680dd01b">
