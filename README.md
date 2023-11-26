@@ -515,3 +515,75 @@ The following waveforms are of GLS Simulation obtained using GTKWave and the sam
 
 ![Screenshot from 2023-11-01 18-34-35](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/0adcc700-cd26-44a9-95d8-4505ce3ef902)
 
+# Physical Design using OPENLANE
+
+**OVERVIEW OF PHYSICAL DESIGN**
+
+Place and Route (PnR) is the core of any ASIC implementation and Openlane flow integrates into it several key open source tools which perform each of the respective stages of PnR. Below are the stages and the respective tools that are called by openlane for the functionalities as described:
+![Screenshot from 2023-11-27 00-01-52](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/8d67e55d-dddf-4444-b4f0-c4bd58d3537f)
+
+Below are the stages and the respective tools that are called by openlane for the functionalities as described:
+
+- Synthesis Generating gate-level netlist (yosys). Performing cell mapping (abc). Performing pre-layout STA (OpenSTA).
+
+- Floorplanning Defining the core area for the macro as well as the cell sites and the tracks (init_fp). Placing the macro input and output ports (ioplacer). Generating the power distribution network (pdn).
+
+- Placement Performing global placement (RePLace). Perfroming detailed placement to legalize the globally placed components (OpenDP).
+
+- Clock Tree Synthesis (CTS) Synthesizing the clock tree (TritonCTS).
+
+- Routing Performing global routing to generate a guide file for the detailed router (FastRoute). Performing detailed routing (TritonRoute)
+
+- GDSII Generation Streaming out the final GDSII layout file from the routed def (Magic).
+
+**OPENLANE
+
+OpenLane is an automated RTL to GDSII flow based on several components including OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, CU-GR, Klayout and a number of custom scripts for design exploration and optimization. The flow performs full ASIC implementation steps from RTL all the way down to GDSII.
+
+More about Openlane at : https://github.com/The-OpenROAD-Project/OpenLane
+
+# MAGIC
+
+Magic is a venerable VLSI layout tool, written in the 1980's at Berkeley by John Ousterhout, now famous primarily for writing the scripting interpreter language Tcl. Due largely in part to its liberal Berkeley open-source license, magic has remained popular with universities and small companies. The open-source license has allowed VLSI engineers with a bent toward programming to implement clever ideas and help magic stay abreast of fabrication technology. However, it is the well thought-out core algorithms which lend to magic the greatest part of its popularity. Magic is widely cited as being the easiest tool to use for circuit layout, even for people who ultimately rely on commercial tools for their product design flow.
+
+More about magic at http://opencircuitdesign.com/magic/index.html
+
+# Preparing the Design
+
+Preparing the design and including the lef files: The commands to prepare the design and overwite in a existing run folder the reports and results along with the command to include the lef files is given below:
+```bash
+sed -i's/max_transition   :0.04/max_transition   :0.75/g'*/*.lib
+```
+
+OpenLane Interactive Flow:
+```bash
+make mount
+%./flow.tcl -interactive
+% package require openlane 0.9
+% prep -design project project_simar
+```
+<img width="866" alt="1" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/38f708af-e53b-4620-888f-42e0ee616123">
+
+- Completion of synthesis, floorplan, placement, CTS, routing.
+
+<img width="866" alt="2" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/defee84e-67b1-4326-9f78-baedd8c7ee81">
+
+```bash
+run_magic
+run_magic_spice_export
+run_magic_drc
+run_antenna_check
+```
+<img width="865" alt="3" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/acefa0f1-7dad-42b6-bd67-fb03564dba9f">
+
+# Reports
+
+**SYNTHESIS**
+
+- Logic synthesis uses the RTL netlist to perform HDL technology mapping. The synthesis process is normally performed in two major steps:
+      -  GTECH Mapping – Consists of mapping the HDL netlist to generic gates what are used to perform logical optimization based on AIGERs and other topologies created from the generic mapped netlist
+      -  Technology Mapping – Consists of mapping the post-optimized GTECH netlist to standard cells described in the PDK.
+
+- To synthesize the code run the following command.
+
+<img width="680" alt="synth_log" src="https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/f21dcaa8-e840-48a4-a0d7-14340cc7e5f5">
