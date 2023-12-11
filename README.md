@@ -520,19 +520,19 @@ Place and Route (PnR) is the core of any ASIC implementation and Openlane flow i
 
 Below are the stages and the respective tools that are called by openlane for the functionalities as described:
 
-- Synthesis Generating gate-level netlist (yosys). Performing cell mapping (abc). Performing pre-layout STA (OpenSTA).
+- Synthesis: Generating gate-level netlist (yosys). Performing cell mapping (abc). Performing pre-layout STA (OpenSTA).
 
-- Floorplanning Defining the core area for the macro as well as the cell sites and the tracks (init_fp). Placing the macro input and output ports (ioplacer). Generating the power distribution network (pdn).
+- Floorplanning : Defining the core area for the macro as well as the cell sites and the tracks (init_fp). Placing the macro input and output ports (ioplacer). Generating the power distribution network (pdn).
 
-- Placement Performing global placement (RePLace). Perfroming detailed placement to legalize the globally placed components (OpenDP).
+- Placement : Performing global placement (RePLace). Perfroming detailed placement to legalize the globally placed components (OpenDP).
 
-- Clock Tree Synthesis (CTS) Synthesizing the clock tree (TritonCTS).
+- Clock Tree Synthesis (CTS) : Synthesizing the clock tree (TritonCTS).
 
-- Routing Performing global routing to generate a guide file for the detailed router (FastRoute). Performing detailed routing (TritonRoute)
+- Routing : Performing global routing to generate a guide file for the detailed router (FastRoute). Performing detailed routing (TritonRoute)
 
-- GDSII Generation Streaming out the final GDSII layout file from the routed def (Magic).
+- GDSII : Generation Streaming out the final GDSII layout file from the routed def (Magic).
 
-**OPENLANE
+**OPENLANE**
 
 OpenLane is an automated RTL to GDSII flow based on several components including OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, CU-GR, Klayout and a number of custom scripts for design exploration and optimization. The flow performs full ASIC implementation steps from RTL all the way down to GDSII.
 
