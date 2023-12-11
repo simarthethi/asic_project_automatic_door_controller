@@ -5,13 +5,7 @@ This github repository summarizes the progress made in the ASIC class for the ri
 The aim of the prohect is to design a gate controller that detects when someone is in the proximity and automatically opens the door
 
 # Working
-A transmitter and an ultrasonic sensor is employed at the bottom of the stick to dtect the obstacle/pothole. Upon activating the transmitter an unltrasonic wave will transmit. Upon detection, the buzzer would go on indicating that there is something nearby.
-
-# Circuit Diagram
-The following is not the final circuit but just for reference
-
-![Screenshot from 2023-10-05 10-29-33](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/4e51e417-326f-4e24-a5a6-34b6b9c89fc9)
-
+The system uses a switch to determine the mode,ie. entry or exit. Once the mode is set,the two proximitey sensors define the opening and closing instances for the door panels. Suppose the first sensor reads a person, it opens the door,and when the second sensor reads the person, meaning the person has crossed the door. The door will remain open when the first sensor reads 0 and the second sensor reads 1. The vice versa happens for the second mode. 
 
 
 # Block Diagram
@@ -279,7 +273,7 @@ sw
 - eg: For m=1 and {p1,p2} = (0,1) the door is opened i.e {d1.d2}=(1,1)
       For m=1 and {p1,p2} = (1,1) the door is opened i.e {d1.d2}=(1,1)
       For m=0 and {p1,p2} = (1,0) the door is opened i.e {d1.d2}=(1,1)
-      For m=1 and {p1,p2} = (0,1) the door is opened i.e {d1.d2}=(0,0)
+      For m=1 and {p1,p2} = (1,0) the door is opened i.e {d1.d2}=(0,0)
 - The masked output format comes as {d1,d2,p2,p1,m}, in which the 3 bits from LSB are input bits which get masked to 0 for the output, thus the masked output is displayed in the spike simulation comes as {1,1,0,0,0}.
 
    Masked Output - 24 (000011000) for input {p2,p1,m}=(0,1,0);(1,0,1);(1,1,1);(1,1,0)
