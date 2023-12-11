@@ -2,7 +2,7 @@
 This github repository summarizes the progress made in the ASIC class for the riscv_project.
 
 # Aim of the project
-The aim of the prohect is to design a gate controller that detects when someone is in the proximity and automatically opens the door
+The aim of the project is to design a gate controller that detects when someone is in the proximity and automatically opens the door
 
 # Working
 The system uses a switch to determine the mode,ie. entry or exit. Once the mode is set,the two proximitey sensors define the opening and closing instances for the door panels. Suppose the first sensor reads a person, it opens the door,and when the second sensor reads the person, meaning the person has crossed the door. The door will remain open when the first sensor reads 0 and the second sensor reads 1. The vice versa happens for the second mode. 
