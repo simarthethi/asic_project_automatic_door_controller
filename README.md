@@ -484,6 +484,8 @@ When the output is becoming low the instruction is ED5FF06F as shown above.
 
 # Gate Level Synthesis
 
+The term "gate level" refers to the netlist view of a circuit, usually produced by logic synthesis. So while RTL simulation is pre-synthesis, GLS is post-synthesis. The netlist view is a complete connection list consisting of gates and IP models with full functional and timing behavior.
+
 Here we do Synthesis of our processor on yosys using the following commands:
 ```bash
 read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80_256.lib 
