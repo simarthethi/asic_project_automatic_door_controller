@@ -9,8 +9,8 @@ The system uses a switch to determine the mode,ie. entry or exit. Once the mode 
 
 
 # Block Diagram
+![Screenshot from 2023-12-11 15-10-25](https://github.com/simarthethi/asic_project_automatic_door_controller/assets/140998783/4a0938e1-24af-40e3-8e66-51a6f8aa4665)
 
-![Screenshot from 2023-10-05 10-16-26](https://github.com/simarthethi/asic_project_blind-stick/assets/140998783/759cf073-f28c-4b43-9b0b-e4b9b9d3b657)
 
 # C code
 -code to be used for generating RTL processor
